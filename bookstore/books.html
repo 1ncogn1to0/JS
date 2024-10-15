@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Catalog</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script>
+        function addTask() {
+            let taskInput = document.getElementById('taskInput');
+            let taskText = taskInput.value.trim();
+            
+            // Check if the input is not empty
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+            
+            // Create a new task item
+            let taskItem = document.createElement('li');
+            taskItem.className = 'task-item';
+
+            // Add task text and buttons
+            taskItem.innerHTML = `
+                <span class="task-text">${taskText}</span>
+                <button onclick="completeTask(this)" class="complete-btn">Complete</button>
+                <button onclick="deleteTask(this)" class="delete-btn">Delete</button>
+            `;
+
+            // Add the task item to the list
+            document.getElementById('taskList').appendChild(taskItem);
+
+            // Clear the input field
+            taskInput.value = "";
+        }
+
+        // Mark task as complete
+        function completeTask(button) {
+            let taskItem = button.parentElement;
+            taskItem.classList.toggle('completed');
+        }
+
+        // Delete task
+        function deleteTask(button) {
+            let taskItem = button.parentElement;
+            taskItem.remove();
+        }
+    </script>
+    <style>
+        /* Style adjustments to match the website design */
+        .todo-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: ghostwhite;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .todo-heading {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: black;
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .task-input::placeholder {
+            font-style: italic;
+            color: #999;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .task-item.completed {
+            background-color: lightgreen;
+        }
+
+        .task-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: black;
+        }
+
+        .complete-btn, .delete-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .complete-btn:hover, .delete-btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-nav">
+                <a href="index.html" class="logo">Bookstore</a>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"> <a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"> <a href="books.html" class="nav-link">Books</a></li>
+                        <li class="nav-item"> <a href="tool.html" class="nav-link">Tools</a></li>
+                        <li class="nav-item"> <a href="register.html" class="nav-link">log in</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Books catalog -->
+    <div class="container">
+        <h1 class="section-heading">Catalog</h1>
+        <div class="book-grid">
+            <div class="book-item">
+                <img src="./images/book1.jpg" alt="Crime and punishment" class="book-cover">
+                <h3 class="book-title">Crime and punishment</h3>
+            </div>
+            <div class="book-item">
+                <img src="./images/book2.jpg" alt="1984" class="book-cover">
+                <h3 class="book-title">1984</h3>
+            </div>
+            <div class="book-item">
+                <img src="./images/book3.jpg" alt="Fahrenheit 451" class="book-cover">
+                <h3 class="book-title">Fahrenheit 451</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- To-Do List section -->
+    <div class="todo-container">
+        <h2 class="todo-heading">To-Do List</h2>
+        <p>Add tasks related to books or any other tasks you want to track!</p>
+        <input type="text" id="taskInput" class="task-input" placeholder="Enter a task">
+        <button onclick="addTask()" class="complete-btn">Add Task</button>
+        <ul id="taskList" class="task-list"></ul>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h3>About Bookstore</h3>
+                    <p>Your go-to destination for discovering a world of stories. We offer a curated selection of books for all kinds of readers.</p>
+                </div>
+                <div class="footer-section links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="register.html">Log In</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@bookstore.com</p>
+                    <p>Phone: 8 800 555 3535</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Bookstore. All rights reserved. | Created by Rashatov Samat
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
